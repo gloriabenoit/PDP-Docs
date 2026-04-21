@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gloria BENOIT" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Implemented methods - Pleiotropy Decomposition Pipeline</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Implemented methods";
+        var mkdocs_page_input_path = "methods.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Pleiotropy Decomposition Pipeline
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="..">Overview</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Implemented methods</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#global-genetic-correlation">Global genetic correlation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#ldsc">LDSC</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#hdl">HDL</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#local-genetic-correlation">Local genetic correlation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#supergnova">SUPERGNOVA</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#hdl-l">HDL-L</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#latent-factor-analysis">Latent factor analysis</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#factorgo">FactorGo</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gfa">GFA</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gleanr">GLEANR</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#guide">GUIDE</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Set up</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../input/">Input data</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dependencies/">Methods dependencies</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Pipeline</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../preprocessing/">Preprocessing the data</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../running/">Running the methods</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../assembling/">Assembling the results</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Pleiotropy Decomposition Pipeline</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">About</li>
+      <li class="breadcrumb-item active">Implemented methods</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/gloriabenoit/PDP-Docs/edit/master/docs/methods.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="implemented-methods">Implemented methods</h1>
+<p>The following page lists all methods and their necessary packages.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The download of each package is automated in a single script, as explained in the <a href="../dependencies/"><em>Methods dependencies</em></a> page.</p>
+</div>
+<h2 id="global-genetic-correlation">Global genetic correlation</h2>
+<h3 id="ldsc">LDSC</h3>
+<div class="admonition reference">
+<p class="admonition-title">Reference</p>
+<p>Bulik-Sullivan, Brendan K et al. “LD Score regression distinguishes confounding from polygenicity in genome-wide association studies.” Nature genetics vol. 47,3 (2015): 291-5. doi:10.1038/ng.3211</p>
+</div>
+<p>LD Score Regression (LDSC) quantifies the contribution of true polygenic signal and bias by examining the relationship between test statistics and linkage disequilibrium (LD).</p>
+<p>LDSC is available as a Python package. However, we are using version <code>1.0.1</code> as a container when running the JASS pipeline.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>LDSC needs to be run before running the pipeline, at the same time as the data preprocessing in the JASS pipeline.
+Please make sure that <code>params.compute_LDSC_matrix</code> in the <code>jass_pipeline.nf</code> file is set to <code>true</code>, in order to run LDSC during this step.</p>
+</div>
+<h3 id="hdl">HDL</h3>
+<div class="admonition reference">
+<p class="admonition-title">Reference</p>
+<p>Ning, Zheng et al. “High-definition likelihood inference of genetic correlations across human complex traits.” Nature genetics vol. 52,8 (2020): 859-864. doi:10.1038/s41588-020-0653-y</p>
+</div>
+<p>High-Definition Likelihood (HDL) is a likelihood-based method for estimating genetic correlation using GWAS summary statistics.</p>
+<p>HDL is available as a R package. We are using R <code>4.4.0</code> and the following dependencies:</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Version</th>
+<th>Available on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data.table</td>
+<td>1.18.2.1</td>
+<td>CRAN</td>
+</tr>
+<tr>
+<td>doSNOW</td>
+<td>1.0.20</td>
+<td>CRAN</td>
+</tr>
+<tr>
+<td>dplyr</td>
+<td>1.1.4</td>
+<td>CRAN</td>
+</tr>
+<tr>
+<td>HDL</td>
+<td>1.4.1</td>
+<td>Github</td>
+</tr>
+</tbody>
+</table>
+<h2 id="local-genetic-correlation">Local genetic correlation</h2>
+<h3 id="supergnova">SUPERGNOVA</h3>
+<div class="admonition reference">
+<p class="admonition-title">Reference</p>
+<p>Zhang, Yiliang et al. “SUPERGNOVA: local genetic correlation analysis reveals heterogeneous etiologic sharing of complex traits.” Genome biology vol. 22,1 262. 7 Sep. 2021, doi:10.1186/s13059-021-02478-w</p>
+</div>
+<p>SUPER GeNetic cOVariance Analyzer (SUPERGNOVA) is a statistical framework to perform local genetic covariance analysis.</p>
+<p>SUPERGNOVA is available as a Python package. We are using Python <code>3.8.18</code> and the following dependencies:</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bitarray</td>
+<td>2.9.2</td>
+</tr>
+<tr>
+<td>numpy</td>
+<td>1.19.5</td>
+</tr>
+<tr>
+<td>pandas</td>
+<td>0.25.3</td>
+</tr>
+<tr>
+<td>scikit-learn</td>
+<td>0.24.2</td>
+</tr>
+<tr>
+<td>scipy</td>
+<td>1.5.3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hdl-l">HDL-L</h3>
+<div class="admonition reference">
+<p class="admonition-title">Reference</p>
+<p>Li, Yuying et al. “An enhanced framework for local genetic correlation analysis.” Nature genetics vol. 57,4 (2025): 1053-1058. doi:10.1038/s41588-025-02123-3</p>
+</div>
+<p>HDL-L is the local version of high-definition likelihood (<a href="#hdl">HDL</a>). It is specifically tailored for local heritability and genetic correlation analysis using GWAS summary statistics.</p>
+<p>Like HDL, HDL-L is available as a R package, with the same dependencies.</p>
+<h2 id="latent-factor-analysis">Latent factor analysis</h2>
+<h3 id="factorgo">FactorGo</h3>
+<div class="admonition reference">
+<p class="admonition-title">Reference</p>
+<p>Zhang, Zixuan et al. “A scalable approach to characterize pleiotropy across thousands of human diseases and complex traits using GWAS summary statistics.” American journal of human genetics vol. 110,11 (2023): 1863-1874. doi:10.1016/j.ajhg.2023.09.015</p>
+</div>
+<p>Factor analysis model in Genetic assOciation (FactorGo) is a scalable variational factor analysis model that learns pleiotropic factors using GWAS summary statistics.</p>
+<p>FactorGo is available as a Python package. We are using Python <code>3.13.2</code> and the following dependencies:</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jax</td>
+<td>0.9.1</td>
+</tr>
+<tr>
+<td>jaxlib</td>
+<td>0.9.1</td>
+</tr>
+<tr>
+<td>numpy</td>
+<td>2.4.3</td>
+</tr>
+<tr>
+<td>pandas</td>
+<td>3.0.1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gfa">GFA</h3>
+<div class="admonition reference">
+<p class="admonition-title">Reference</p>
+<p>Morrison, Jean et al. “Genetic Factor Analysis for Characterizing Phenome-Wide Patterns of Genetic Pleiotropy.” Under Revision at Nature Genetics (July 2024). doi:/10.21203/rs.3.rs-4714610/v1 Preprint.</p>
+</div>
+<p>Genetic Factor Analysis (GFA) uses factor analysis to identify common genetic factors shared by multiple traits.</p>
+<p>GFA is available as a R package. We are using R <code>4.4.0</code> and the following dependencies:</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Version</th>
+<th>Available on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VariantAnnotation</td>
+<td>1.52.0</td>
+<td>Bioconductor</td>
+</tr>
+<tr>
+<td>BiocManager</td>
+<td>1.30.27</td>
+<td>CRAN</td>
+</tr>
+<tr>
+<td>dplyr</td>
+<td>1.2.0</td>
+<td>CRAN</td>
+</tr>
+<tr>
+<td>ggrepel</td>
+<td>0.9.6</td>
+<td>CRAN</td>
+</tr>
+<tr>
+<td>purrr</td>
+<td>1.2.1</td>
+<td>CRAN</td>
+</tr>
+<tr>
+<td>readr</td>
+<td>2.2.0</td>
+<td>CRAN</td>
+</tr>
+<tr>
+<td>rlang</td>
+<td>1.1.6</td>
+<td>CRAN</td>
+</tr>
+<tr>
+<td>stringr</td>
+<td>1.6.0</td>
+<td>CRAN</td>
+</tr>
+<tr>
+<td>GFA</td>
+<td>1.0.0.449</td>
+<td>Github</td>
+</tr>
+<tr>
+<td>gwasvcf</td>
+<td>0.1.5</td>
+<td>Github</td>
+</tr>
+<tr>
+<td>ieugwasr</td>
+<td>1.1.0.9000</td>
+<td>Github</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gleanr">GLEANR</h3>
+<div class="admonition reference">
+<p class="admonition-title">Reference</p>
+<p>Omdahl, Ashton R et al. “Sparse matrix factorization robust to sample sharing across GWASs reveals interpretable genetic components.” American journal of human genetics vol. 112,9 (2025): 2178-2197. doi:10.1016/j.ajhg.2025.07.003</p>
+</div>
+<p>GWAS Latent Embeddings Accounting for Noise and Regularization (GLEANR) is a GWAS matrix factorization tool to estimate sparse latent pleiotropic genetic factors.</p>
+<p>GLEANR is available as a R package. We are using R <code>4.4.0</code> and the following dependencies:</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Version</th>
+<th>Available on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data.table</td>
+<td>1.18.2.1</td>
+<td>CRAN</td>
+</tr>
+<tr>
+<td>gleanr</td>
+<td>0.0.0.9000</td>
+<td>Github</td>
+</tr>
+</tbody>
+</table>
+<h3 id="guide">GUIDE</h3>
+<div class="admonition reference">
+<p class="admonition-title">Reference</p>
+<p>Lazarev, Daniel et al. “GUIDE deconstructs genetic architectures using association studies.” bioRxiv : the preprint server for biology 2024.05.03.592285. 8 Apr. 2025, doi:10.1101/2024.05.03.592285. Preprint.</p>
+</div>
+<p>Genomic Unmixing by Independent Decomposition (GUIDE) estimates a set of statistically independent latent factors that best express the patterns of association across many traits.</p>
+<p>GUIDE is available as a Python package. We are using Python <code>3.13.2</code> and the following dependencies:</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>numpy</td>
+<td>1.18.5</td>
+</tr>
+<tr>
+<td>polars</td>
+<td>1.38.1</td>
+</tr>
+<tr>
+<td>scipy</td>
+<td>1.5.0</td>
+</tr>
+<tr>
+<td>scikit-learn</td>
+<td>0.23.1</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../input/" class="btn btn-neutral float-right" title="Input data">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/gloriabenoit/PDP-Docs" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../input/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

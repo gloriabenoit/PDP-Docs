@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gloria BENOIT" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Overview - Pleiotropy Decomposition Pipeline</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Overview";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> Pleiotropy Decomposition Pipeline
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Overview</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-use">How to use</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#input">Input</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#running">Running</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="methods/">Implemented methods</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Set up</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="input/">Input data</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="dependencies/">Methods dependencies</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Pipeline</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="preprocessing/">Preprocessing the data</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="running/">Running the methods</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="assembling/">Assembling the results</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">Pleiotropy Decomposition Pipeline</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">About</li>
+      <li class="breadcrumb-item active">Overview</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/gloriabenoit/PDP-Docs/edit/master/docs/index.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="pleiotropy-decomposition-pipeline-using-gwas-summary-statistics">Pleiotropy Decomposition Pipeline using GWAS summary statistics</h1>
+<h2 id="architecture">Architecture</h2>
+<p><img alt="Pipeline architecture" src="img/pipeline_architecture.png" /></p>
+<p>This pipeline will compute results for a total of <strong>8 methods</strong>:</p>
+<ul>
+<li><strong>Global correlation methods:</strong><ul>
+<li>LDSC (<a href="https://pubmed.ncbi.nlm.nih.gov/25642630/">Bulik-Sullivan et al. 2015</a>, <a href="https://github.com/bulik/ldsc">Github repo</a>)</li>
+<li>HDL (<a href="https://pubmed.ncbi.nlm.nih.gov/32601477/">Ning et al. 2020</a>, <a href="https://github.com/zhenin/HDL">Github repo</a>)</li>
+</ul>
+</li>
+<li><strong>Local correlation methods:</strong><ul>
+<li>SUPERGNOVA (<a href="https://pubmed.ncbi.nlm.nih.gov/34493297/">Zhang et al. 2021</a>, <a href="https://github.com/qlu-lab/SUPERGNOVA">Github repo</a>)</li>
+<li>HDL-L (<a href="https://pubmed.ncbi.nlm.nih.gov/40065165/">Li et al. 2025</a>, <a href="https://github.com/zhenin/HDL">Github repo</a>)</li>
+</ul>
+</li>
+<li><strong>Latent factor analysis methods:</strong><ul>
+<li>FactorGo (<a href="https://pubmed.ncbi.nlm.nih.gov/37879338/">Zhang et al. 2023</a>, <a href="https://github.com/mancusolab/FactorGo">Github repo</a>)</li>
+<li>GFA (<a href="https://www.researchsquare.com/article/rs-4714610/v1">Morrison et al. Preprint</a>, <a href="https://github.com/jean997/GFA">Github repo</a>)</li>
+<li>GLEANR  (<a href="https://pubmed.ncbi.nlm.nih.gov/40730164/">Omdahl et al. 2025</a>, <a href="https://github.com/aomdahl/gleanr">Github repo</a>)</li>
+<li>GUIDE (<a href="https://pubmed.ncbi.nlm.nih.gov/38766146/">Lazarev et al. Preprint</a>, <a href="https://github.com/daniel-lazarev/GUIDE">Github repo</a>)</li>
+</ul>
+</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<pre><code class="language-bash"># Download with https
+git clone https://github.com/gloriabenoit/pleiotropy_decomposition.git
+# or ssh
+git clone git@github.com:gloriabenoit/pleiotropy_decomposition.git
+
+cd pleiotropy_decomposition
+</code></pre>
+<h2 id="how-to-use">How to use</h2>
+<h3 id="input">Input</h3>
+<p>The pipeline takes as input GWAS summary statistics that have been passed through the <a href="https://gitlab.pasteur.fr/statistical-genetics/jass_suite_pipeline">JASS analysis pipeline</a>, to harmonize your GWAS summary statistics formats as well as run LDSC.
+The output folder of this pipeline is the main input of ours.</p>
+<h3 id="parameters">Parameters</h3>
+<p>You can alter the parameters of the pipeline as well as the methods by changing the values of the <code>{step}_arguments.txt</code> files in the <code>./config/</code> folder.</p>
+<p>By default, we will apply the preprocessing filters suggested in each article.
+However, it is also possible to provide a list of SNPs to analyze, so that every methods has the same input.
+This list will replace the preprocessing steps for latent factors analysis methods (FactorGo, GFA, GLEANR, GUIDE), but not the global and local correlation methods (LDSC, HDL, SUPERGNOVA, HDL-L).</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>To indicate whether you want to apply the original filters or use a list of SNPs, you can update the value of <code>use_filters</code> in <code>./config/pipeline_arguments.txt</code>.</p>
+</div>
+<h3 id="running">Running</h3>
+<p>The three steps of our pipeline can be run separately.</p>
+<pre><code class="language-bash">sh run_preprocessing.sh
+sh run_pipeline.sh
+sh run_assembly.sh
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As of now, the steps need to be launched manually one after the other once they're complete.</p>
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="methods/" class="btn btn-neutral float-right" title="Implemented methods">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/gloriabenoit/PDP-Docs" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+      <span><a href="methods/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
