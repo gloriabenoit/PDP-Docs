@@ -1,6 +1,6 @@
 
 # Methods dependencies
-## Original Github repositories
+## Github repositories
 
 Some methods need additionnal files to run, which are available on the original Github repositories.
 We will clone each of them  since some are necessary but also as a way to give credit.
@@ -9,7 +9,7 @@ We will clone each of them  since some are necessary but also as a way to give c
 sh ./src/clone_repos.sh
 ```
 
-## Package dependencies
+## Packages
 
 !!! info
     More information on the specific dependencies can be found in the [*Implemented methods*](methods.md) page.

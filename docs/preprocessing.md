@@ -1,6 +1,6 @@
 # Preprocessing the data
 
-The first step of the pipeline is the preprocessing of the data.
+The first step of the pipeline is to preprocess the data.
 During this step, we will format the inputs of each methods accordingly.
 
 Additionnaly, we will retrieve the LDSC results.

@@ -45,6 +45,9 @@ Although it is possible to compute your own reference panel, we choose to use th
 !!! note
     Please be aware that the pre-computed panels are quite heavy (33G for the global panel and ~2G for the local one).
 
+!!! info
+    To specify the reference panels for these methods, you can update the values of `global_panel_dir`, `local_panel_dir` and `local_bim_dir` in `./config/HDL_arguments.txt`.
+
 ### SUPERGNOVA
 
 When reading the reference panel, SUPERGNOVA expects to find variants positions (in centimorgans).

@@ -1,6 +1,6 @@
 # Running the methods
 
-The second step of the pipeline is the running of the methods. During this step, we will run each methods independantly.
+The second step of the pipeline is to run the methods. During this step, we will run each methods independantly.
 
 ```bash
 sh run_pipeline.sh
