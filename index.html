@@ -45,17 +45,11 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#methods">Methods</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#how-to-use">How to use</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#input">Input</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#running">Running</a>
-    </li>
-        </ul>
+    <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
     </li>
     </ul>
                   </li>
@@ -66,7 +60,9 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="input/">Input data</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="dependencies/">Methods dependencies</a>
+                  <li class="toctree-l1"><a class="reference internal" href="dependencies/">Dependencies</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="parameters/">Parameters</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Pipeline</span></p>
@@ -106,6 +102,7 @@
                 <h1 id="pleiotropy-decomposition-pipeline-using-gwas-summary-statistics">Pleiotropy Decomposition Pipeline using GWAS summary statistics</h1>
 <h2 id="architecture">Architecture</h2>
 <p><img alt="Pipeline architecture" src="img/pipeline_architecture.png" /></p>
+<h2 id="methods">Methods</h2>
 <p>This pipeline will compute results for a total of <strong>8 methods</strong>:</p>
 <ul>
 <li><strong>Global correlation methods:</strong><ul>
@@ -126,6 +123,10 @@
 </ul>
 </li>
 </ul>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>More information on the methods can be found in the <a href="methods/"><em>Implemented methods</em></a> page.</p>
+</div>
 <h2 id="installation">Installation</h2>
 <pre><code class="language-bash"># Download with https
 git clone https://github.com/gloriabenoit/pleiotropy_decomposition.git
@@ -134,25 +135,13 @@ git clone git@github.com:gloriabenoit/pleiotropy_decomposition.git
 
 cd pleiotropy_decomposition
 </code></pre>
-<h2 id="how-to-use">How to use</h2>
-<h3 id="input">Input</h3>
-<p>The pipeline takes as input GWAS summary statistics that have been passed through the <a href="https://gitlab.pasteur.fr/statistical-genetics/jass_suite_pipeline">JASS analysis pipeline</a>, to harmonize your GWAS summary statistics formats as well as run LDSC.
-The output folder of this pipeline is the main input of ours.</p>
-<h3 id="parameters">Parameters</h3>
-<p>You can alter the parameters of the pipeline as well as the methods by changing the values of the <code>{step}_arguments.txt</code> files in the <code>./config/</code> folder.</p>
-<p>By default, we will apply the preprocessing filters suggested in each article.
-However, it is also possible to provide a list of SNPs to analyze, so that every methods has the same input.
-This list will replace the preprocessing steps for latent factors analysis methods (FactorGo, GFA, GLEANR, GUIDE), but not the global and local correlation methods (LDSC, HDL, SUPERGNOVA, HDL-L).</p>
+<h2 id="usage">Usage</h2>
+<p>The pipeline is written to be ran on a HPC cluster which uses environment modules (<code>module load</code> command).
+Through the use of multiple Bash scripts, we will run both Python and R methods.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>To indicate whether you want to apply the original filters or use a list of SNPs, you can update the value of <code>use_filters</code> in <code>./config/pipeline_arguments.txt</code>.</p>
+<p>More information on the versions used can be found in the <a href="methods/"><em>Implemented methods</em></a> and <a href="dependencies/"><em>Dependencies</em></a> pages.</p>
 </div>
-<h3 id="running">Running</h3>
-<p>The three steps of our pipeline can be run separately.</p>
-<pre><code class="language-bash">sh run_preprocessing.sh
-sh run_pipeline.sh
-sh run_assembly.sh
-</code></pre>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>As of now, the steps need to be launched manually one after the other once they're complete.</p>

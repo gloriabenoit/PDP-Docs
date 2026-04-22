@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gloria BENOIT" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Methods dependencies - Pleiotropy Decomposition Pipeline</title>
+    <title>Dependencies - Pleiotropy Decomposition Pipeline</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Methods dependencies";
+        var mkdocs_page_name = "Dependencies";
         var mkdocs_page_input_path = "dependencies.md";
         var mkdocs_page_url = null;
       </script>
@@ -50,13 +50,15 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../input/">Input data</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Methods dependencies</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Dependencies</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#github-repositories">Github repositories</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#packages">Packages</a>
     </li>
     </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Pipeline</span></p>
@@ -83,7 +85,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Set up</li>
-      <li class="breadcrumb-item active">Methods dependencies</li>
+      <li class="breadcrumb-item active">Dependencies</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/gloriabenoit/PDP-Docs/edit/master/docs/dependencies.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
@@ -93,18 +95,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="methods-dependencies">Methods dependencies</h1>
+                <h1 id="dependencies">Dependencies</h1>
 <h2 id="github-repositories">Github repositories</h2>
 <p>Some methods need additionnal files to run, which are available on the original Github repositories.
 We will clone each of them  since some are necessary but also as a way to give credit.</p>
 <pre><code class="language-bash">sh ./src/clone_repos.sh
 </code></pre>
 <h2 id="packages">Packages</h2>
+<p>The methods have their own dependencies, therefore we will create a new virtual environment for each.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>More information on the specific dependencies can be found in the <a href="../methods/"><em>Implemented methods</em></a> page.</p>
 </div>
-<p>The methods have their own dependencies, therefore we will create a new virtual environment for each.</p>
 <p>We will also create an environment for the pre- and post-processing done, using Python <code>3.13.2</code> and polars <code>1.39.3</code>.</p>
 <pre><code class="language-bash">sh ./src/dependencies/create_venv.sh
 </code></pre>
@@ -117,7 +119,7 @@ We will clone each of them  since some are necessary but also as a way to give c
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../input/" class="btn btn-neutral float-left" title="Input data"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../preprocessing/" class="btn btn-neutral float-right" title="Preprocessing the data">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../parameters/" class="btn btn-neutral float-right" title="Parameters">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -147,7 +149,7 @@ We will clone each of them  since some are necessary but also as a way to give c
       <span><a href="../input/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../preprocessing/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../parameters/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

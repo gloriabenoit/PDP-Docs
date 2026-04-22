@@ -50,7 +50,9 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../input/">Input data</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../dependencies/">Methods dependencies</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../dependencies/">Dependencies</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Pipeline</span></p>
@@ -66,6 +68,8 @@
     <li class="toctree-l3"><a class="reference internal" href="#gleanr">GLEANR</a>
     </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pre-defined-variant-list">Pre-defined variant list</a>
     </li>
     </ul>
                   </li>
@@ -105,6 +109,10 @@ During this step, we will format the inputs of each methods accordingly.</p>
 <p>Additionnaly, we will retrieve the LDSC results.</p>
 <pre><code class="language-bash">sh run_preprocessing.sh
 </code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Variants with missing data are always removed.</p>
+</div>
 <h2 id="method-specific-filtering">Method specific filtering</h2>
 <h3 id="factorgo">FactorGo</h3>
 <p>Variants were selected based on the following filters:</p>
@@ -129,11 +137,19 @@ During this step, we will format the inputs of each methods accordingly.</p>
 <li>p &lt; 10e-5 in at least one study</li>
 <li>LD based on pleiotropy score with kb = 250 and r2 &lt; 0.2 (detailed in <a href="https://ars.els-cdn.com/content/image/1-s2.0-S0002929725002733-mmc1.pdf">Note S3</a>)</li>
 </ul>
+<h2 id="pre-defined-variant-list">Pre-defined variant list</h2>
+<p>By default, we will apply the preprocessing filters suggested in each article.
+However, it is also possible to provide a list of SNPs to analyze, so that every methods has the same input.</p>
+<p>This list will replace the preprocessing steps for latent factors analysis methods (FactorGo, GFA, GLEANR, GUIDE), but not the global and local correlation methods (LDSC, HDL, SUPERGNOVA, HDL-L).</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>To indicate whether you want to apply the original filters or use a list of SNPs, you can update the value of <code>use_filters</code> in <code>./config/pipeline_arguments.txt</code>. To specify which list to use, you can update the value of <code>input_variants</code> in the same file.</p>
+</div>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../dependencies/" class="btn btn-neutral float-left" title="Methods dependencies"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../parameters/" class="btn btn-neutral float-left" title="Parameters"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../running/" class="btn btn-neutral float-right" title="Running the methods">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -161,7 +177,7 @@ During this step, we will format the inputs of each methods accordingly.</p>
         </span>
     
     
-      <span><a href="../dependencies/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../parameters/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../running/" style="color: #fcfcfc">Next &raquo;</a></span>

@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gloria BENOIT" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Assembling the results - Pleiotropy Decomposition Pipeline</title>
+    <title>Parameters - Pleiotropy Decomposition Pipeline</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Assembling the results";
-        var mkdocs_page_input_path = "assembling.md";
+        var mkdocs_page_name = "Parameters";
+        var mkdocs_page_input_path = "parameters.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -47,23 +47,23 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Set up</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../input/">Input data</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../dependencies/">Dependencies</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Parameters</a>
+    <ul class="current">
+    </ul>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Pipeline</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../preprocessing/">Preprocessing the data</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../running/">Running the methods</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Assembling the results</a>
-    <ul class="current">
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../assembling/">Assembling the results</a>
                   </li>
               </ul>
       </div>
@@ -80,10 +80,10 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Pipeline</li>
-      <li class="breadcrumb-item active">Assembling the results</li>
+          <li class="breadcrumb-item">Set up</li>
+      <li class="breadcrumb-item active">Parameters</li>
     <li class="wy-breadcrumbs-aside">
-          <a href="https://github.com/gloriabenoit/PDP-Docs/edit/master/docs/assembling.md" class="icon icon-github"> Edit on GitHub</a>
+          <a href="https://github.com/gloriabenoit/PDP-Docs/edit/master/docs/parameters.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
   </ul>
   <hr/>
@@ -91,17 +91,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="assembling-the-results">Assembling the results</h1>
-<p>The third and last step of the pipeline is to assemble of the results.
-During this step, we will compile the results of each method into one single table where the rows are variants and columns are methods.</p>
-<pre><code class="language-bash">sh run_assembly.sh
+                <h1 id="parameters">Parameters</h1>
+<p>The pipeline parameters are stored in the <code>./config/</code> directory.
+This directory contains 9 files:</p>
+<ul>
+<li><code>pipeline_arguments.txt</code>, main parameters of the pipeline</li>
+<li><code>assembly_arguments.txt</code>, parameters of the final assembly</li>
+<li><code>{method}_arguments.txt</code>, parameters of each method (except LDSC)</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The names of the files created during the pipeline depend on the parameters you have chosen.
+If it is different from the default, than it will change accordingly to differentiate this run from other runs.</p>
+</div>
+<p>Most parameters can be modified while other shouldn't to avoid breaking the pipeline.
+This is specified by the use of the following dividing line:</p>
+<pre><code class="language-text">#=====================================DO NOT MODIFY AFTER THAT=====================================
 </code></pre>
-<p>During the assembly HDL, SUPERGNOVA and HDL-L results are summarized into one file each to easily take a look at the results.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../running/" class="btn btn-neutral float-left" title="Running the methods"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../dependencies/" class="btn btn-neutral float-left" title="Dependencies"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../preprocessing/" class="btn btn-neutral float-right" title="Preprocessing the data">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -128,8 +140,10 @@ During this step, we will compile the results of each method into one single tab
         </span>
     
     
-      <span><a href="../running/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../dependencies/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
+    
+      <span><a href="../preprocessing/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
