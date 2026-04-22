@@ -1,5 +1,5 @@
 
-# Methods dependencies
+# Dependencies
 ## Github repositories
 
 Some methods need additionnal files to run, which are available on the original Github repositories.
@@ -11,10 +11,10 @@ sh ./src/clone_repos.sh
 
 ## Packages
 
+The methods have their own dependencies, therefore we will create a new virtual environment for each.
+
 !!! info
     More information on the specific dependencies can be found in the [*Implemented methods*](methods.md) page.
-
-The methods have their own dependencies, therefore we will create a new virtual environment for each.
 
 We will also create an environment for the pre- and post-processing done, using Python `3.13.2` and polars `1.39.3`.
 

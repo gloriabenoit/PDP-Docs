@@ -3,7 +3,7 @@
 The following page lists all methods and their necessary packages.
 
 !!! info
-    The download of each package is automated in a single script, as explained in the [*Methods dependencies*](dependencies.md) page.
+    The download of each package is automated in a single script, as explained in the [*Dependencies*](dependencies.md) page.
 
 ## Global genetic correlation
 
