@@ -7,6 +7,7 @@ nav:
     - About:
       - Overview: index.md
       - Implemented methods: methods.md
+      - Repertory architecture: architecture.md
     - Set up:
       - Input data: input.md
       - Dependencies: dependencies.md

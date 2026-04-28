@@ -21,6 +21,15 @@ Putting the input data through the JASS analysis pipeline allows for the followi
 * Remove variants with heterogeneous sample sizes
 * Normalize the effect size to Z-scores
 
+## Set of studies
+
+In addition to the harmonized summary statistics obtained with JASS, you need a `.txt` file specifying for which studies you would like to run the pipeline.
+This file should contain one study per line, without the file extension.
+
+!!! note
+    For instance, for the outcome `BREST-CANCER` in the consortium `BCAC`, the JASS harmonized file will be `z_BCAC_BREAST-CANCER.txt`.
+    Therefore, you should only write `z_BCAC_BREAST-CANCER`.
+
 ## Additional files
 
 Most methods need additional files to run.

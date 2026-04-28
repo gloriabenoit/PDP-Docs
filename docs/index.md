@@ -1,7 +1,5 @@
 # Pleiotropy Decomposition Pipeline using GWAS summary statistics
 
-## Architecture
-
 ![Pipeline architecture](./img/pipeline_architecture.png)
 
 ## Methods
@@ -38,6 +36,7 @@ cd pleiotropy_decomposition
 
 The pipeline is written to be ran on a HPC cluster which uses environment modules (`module load` command).
 Through the use of multiple Bash scripts, we will run both Python and R methods.
+Additionaly, we will use `plink/1.90p`, which will also be loaded with environment modules.
 
 !!! info
     More information on the versions used can be found in the [*Implemented methods*](methods.md) and [*Dependencies*](dependencies.md) pages.
