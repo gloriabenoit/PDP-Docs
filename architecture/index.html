@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gloria BENOIT" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Running the methods - Pleiotropy Decomposition Pipeline</title>
+    <title>Repertory architecture - Pleiotropy Decomposition Pipeline</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Running the methods";
-        var mkdocs_page_input_path = "running.md";
+        var mkdocs_page_name = "Repertory architecture";
+        var mkdocs_page_input_path = "architecture.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -40,12 +40,28 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">About</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="..">Overview</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../methods/">Implemented methods</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../architecture/">Repertory architecture</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Repertory architecture</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#config-directory">config directory</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-directory">data directory</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#env-directory">env directory</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#log-directory">log directory</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#module-directory">module directory</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#res-directory">res directory</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#src-directory">src directory</a>
+    </li>
+    </ul>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Set up</span></p>
@@ -58,20 +74,10 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Pipeline</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../preprocessing/">Preprocessing the data</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Running the methods</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#method-specific-properties">Method specific properties</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#hdl-supergnova-and-hdl-l">HDL, SUPERGNOVA and HDL-L</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#factorgo-and-guide">FactorGo and GUIDE</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../running/">Running the methods</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../assembling/">Assembling the results</a>
                   </li>
@@ -90,10 +96,10 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Pipeline</li>
-      <li class="breadcrumb-item active">Running the methods</li>
+          <li class="breadcrumb-item">About</li>
+      <li class="breadcrumb-item active">Repertory architecture</li>
     <li class="wy-breadcrumbs-aside">
-          <a href="https://github.com/gloriabenoit/PDP-Docs/edit/master/docs/running.md" class="icon icon-github"> Edit on GitHub</a>
+          <a href="https://github.com/gloriabenoit/PDP-Docs/edit/master/docs/architecture.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
   </ul>
   <hr/>
@@ -101,27 +107,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="running-the-methods">Running the methods</h1>
-<p>The second step of the pipeline is to run the methods. During this step, we will run each methods independantly.</p>
-<pre><code class="language-bash">sh run_pipeline.sh
+                <h1 id="repertory-architecture">Repertory architecture</h1>
+<p>Once you have downloaded every necessary file, and ran at least one analysis, your repertory should look something like this:</p>
+<pre><code class="language-text">├── config
+├── data
+├── env
+├── log
+├── module
+├── res
+└── src
 </code></pre>
-<h2 id="method-specific-properties">Method specific properties</h2>
-<h3 id="hdl-supergnova-and-hdl-l">HDL, SUPERGNOVA and HDL-L</h3>
-<p>Global and local genetic correlation methods compare pairs of studies.
-Therefore, we automate them with a <code>sbatch</code> command allowing for parallel runs between each possible pairs.</p>
-<h3 id="factorgo-and-guide">FactorGo and GUIDE</h3>
-<p>Unlike the other latent factor analysis methods, FactorGo and GUIDE do not automatically choose the number of factor to impute.
-This number needs to be manually selected before running the pipeline.</p>
+<h2 id="config-directory"><em>config</em> directory</h2>
+<p>This directory stores <code>.txt</code> files containing the pipeline's parameters.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>To specify the number of factors to search for, you can update the value of <code>k</code> in <code>./config/FactorGo_arguments.txt</code> and <code>./config/GUIDE_arguments.txt</code>, for FactorGo and GUIDE respectively.</p>
+<p>More information on the possible parameters can be found in the <a href="../parameters/"><em>Parameters</em></a> pages.</p>
 </div>
+<h2 id="data-directory"><em>data</em> directory</h2>
+<p>This directory stores every needed files to run each method.
+It is created during the preprocessing step and contains one directory per method.</p>
+<h2 id="env-directory"><em>env</em> directory</h2>
+<p>This directory stores every virtual environnment needed for each method.
+The Python environment are actual virtual environnment while the R ones are actually the paths to <code>R_LIBS_USER</code>.</p>
+<h2 id="log-directory"><em>log</em> directory</h2>
+<p>This directory stores the log of every method ran.
+To make it easier to navigate, it contains a directory per pipeline run, then one per method.</p>
+<h2 id="module-directory"><em>module</em> directory</h2>
+<p>This directory stores the original Github repositories of each method.
+It is created before running your first analysis.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>More information on the cloning of these repositories can be found in the <a href="../dependencies/#github-repositories"><em>Dependencies</em></a> pages.</p>
+</div>
+<h2 id="res-directory"><em>res</em> directory</h2>
+<p>This directory stores the results of every method ran.
+To make it easier to navigate, it contains a directory per pipeline run, then one per method.</p>
+<h2 id="src-directory"><em>src</em> directory</h2>
+<p>This directory stores the necessary code to each method, thus the entire pipeline.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../preprocessing/" class="btn btn-neutral float-left" title="Preprocessing the data"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../assembling/" class="btn btn-neutral float-right" title="Assembling the results">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../methods/" class="btn btn-neutral float-left" title="Implemented methods"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../input/" class="btn btn-neutral float-right" title="Input data">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -148,10 +176,10 @@ This number needs to be manually selected before running the pipeline.</p>
         </span>
     
     
-      <span><a href="../preprocessing/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../methods/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../assembling/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../input/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

@@ -45,6 +45,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../methods/">Implemented methods</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../architecture/">Repertory architecture</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Set up</span></p>
               <ul>
@@ -68,8 +70,6 @@
     <li class="toctree-l3"><a class="reference internal" href="#gleanr">GLEANR</a>
     </li>
         </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#pre-defined-variant-list">Pre-defined variant list</a>
     </li>
     </ul>
                   </li>
@@ -114,11 +114,15 @@ During this step, we will format the inputs of each methods accordingly.</p>
 <p>Variants with missing data are always removed.</p>
 </div>
 <h2 id="method-specific-filtering">Method specific filtering</h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>To bypass these specific preprocessing filters and use a pre-defined set of variants, please check the <a href="../parameters/#using-a-pre-defined-set-of-variants"><em>Parameters</em></a> page.</p>
+</div>
 <h3 id="factorgo">FactorGo</h3>
 <p>Variants were selected based on the following filters:</p>
 <ul>
 <li>MAF &gt; 0.01 (Done in JASS preprocessing)</li>
-<li>Outside of HLA locus (Chr 6: 28510120-33480577)</li>
+<li>Outside of HLA locus</li>
 <li>p &lt; 5e-8 in at least two study</li>
 <li>LD pruning with kb = 250 and r2 &lt; 0.3</li>
 </ul>
@@ -133,18 +137,10 @@ During this step, we will format the inputs of each methods accordingly.</p>
 <p>Variants were selected based on the following filters:</p>
 <ul>
 <li>MAF &gt; 0.01 (Done in JASS preprocessing)</li>
-<li>Outside of HLA locus (Chr 6: 28510120-33480577)</li>
+<li>Outside of HLA locus</li>
 <li>p &lt; 10e-5 in at least one study</li>
 <li>LD based on pleiotropy score with kb = 250 and r2 &lt; 0.2 (detailed in <a href="https://ars.els-cdn.com/content/image/1-s2.0-S0002929725002733-mmc1.pdf">Note S3</a>)</li>
 </ul>
-<h2 id="pre-defined-variant-list">Pre-defined variant list</h2>
-<p>By default, we will apply the preprocessing filters suggested in each article.
-However, it is also possible to provide a list of SNPs to analyze, so that every methods has the same input.</p>
-<p>This list will replace the preprocessing steps for latent factors analysis methods (FactorGo, GFA, GLEANR, GUIDE), but not the global and local correlation methods (LDSC, HDL, SUPERGNOVA, HDL-L).</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>To indicate whether you want to apply the original filters or use a list of SNPs, you can update the value of <code>use_filters</code> in <code>./config/pipeline_arguments.txt</code>. To specify which list to use, you can update the value of <code>input_variants</code> in the same file.</p>
-</div>
               
             </div>
           </div><footer>

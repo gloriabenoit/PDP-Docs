@@ -45,6 +45,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../methods/">Implemented methods</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../architecture/">Repertory architecture</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Set up</span></p>
               <ul class="current">
@@ -54,6 +56,10 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Parameters</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#masking-the-mhc-region">Masking the MHC region</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-a-pre-defined-set-of-variants">Using a pre-defined set of variants</a>
+    </li>
     </ul>
                   </li>
               </ul>
@@ -108,6 +114,21 @@ If it is different from the default, than it will change accordingly to differen
 This is specified by the use of the following dividing line:</p>
 <pre><code class="language-text">#=====================================DO NOT MODIFY AFTER THAT=====================================
 </code></pre>
+<h2 id="masking-the-mhc-region">Masking the MHC region</h2>
+<p>Methods like FactorGo or GLEANR suggest using variants outside of the MHC region.
+This region is located on chromosome 6, and we have provided the following range for <em>GRCh38</em>: 28510120-33480577.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>To modify the range of the MHC region, please update the values of <code>mhc_start</code> and <code>mhc_end</code>.</p>
+</div>
+<h2 id="using-a-pre-defined-set-of-variants">Using a pre-defined set of variants</h2>
+<p>By default, we will apply the preprocessing filters suggested by each method in their respective article.
+However, it is also possible to provide a list of SNPs to analyze, so that every methods has the same input.</p>
+<p>This list will replace the preprocessing steps for latent factors analysis methods (FactorGo, GFA, GLEANR, GUIDE), but not the global and local correlation methods (LDSC, HDL, SUPERGNOVA, HDL-L).</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>To indicate whether you want to apply the original filters or use a list of SNPs, you can update the value of <code>use_filters</code> in <code>./config/pipeline_arguments.txt</code>. To specify which list to use, you can update the value of <code>input_variants</code> in the same file.</p>
+</div>
               
             </div>
           </div><footer>
