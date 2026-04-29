@@ -104,18 +104,23 @@ We will clone each of them  since some are necessary but also as a way to give c
 <pre><code class="language-bash">sh ./src/clone_repos.sh
 </code></pre>
 <h2 id="packages">Packages</h2>
-<p>The methods have their own dependencies, therefore we will create a new virtual environment for each.</p>
+<p>The methods have their own dependencies, therefore we need a new virtual environment for each.
+Additionnaly, you need an environment for the pre- and post-processing done, using Python <code>3.13.2</code> and polars <code>1.39.3</code>.</p>
+<p>These environments should be stored in the <code>./env/</code> directory, and should be named depending on the method:</p>
+<ul>
+<li>HDL and HDL-L packages should be downloaded in <code>./env/hdl</code></li>
+<li>SUPERGNOVA packages should be downloaded in <code>./env/supergnova</code></li>
+<li>FactorGo packages should be downloaded in <code>./env/factorgo</code></li>
+<li>GFA packages should be downloaded in <code>./env/gfa</code></li>
+<li>GLEANR packages should be downloaded in <code>./env/gleanr</code></li>
+<li>GUIDE packages should be downloaded in <code>./env/guide</code></li>
+<li>Pre- and post-processing packages should be downloaded in <code>./env/processing</code></li>
+</ul>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>More information on the specific dependencies can be found in the <a href="../methods/"><em>Implemented methods</em></a> page.</p>
+<p>More information on the specific packanges and their versions can be found in the <a href="../methods/"><em>Implemented methods</em></a> page.</p>
 </div>
-<p>We will also create an environment for the pre- and post-processing done, using Python <code>3.13.2</code> and polars <code>1.39.3</code>.</p>
-<pre><code class="language-bash">sh ./src/dependencies/create_venv.sh
-</code></pre>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Please note that this step takes quite some time, thankfully you only need to do it once.</p>
-</div>
+<p>You can create the environments yourself or use <code>./src/dependencies/create_venv.sh</code>, which contains the code to create them correctly.</p>
               
             </div>
           </div><footer>
