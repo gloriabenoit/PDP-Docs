@@ -29,6 +29,9 @@ It is created during the preprocessing step and contains one directory per metho
 This directory stores every virtual environnment needed for each method.
 The Python environment are actual virtual environnment while the R ones are actually the paths to `R_LIBS_USER`.
 
+!!! info
+    More information on the cloning of these repositories can be found in the [*Dependencies*](dependencies.md#packages) pages.
+
 ## *log* directory
 
 This directory stores the log of every method ran.

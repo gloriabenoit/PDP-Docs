@@ -11,7 +11,7 @@ This directory contains 9 files:
     The names of the files created during the pipeline depend on the parameters you have chosen.
     If it is different from the default, than it will change accordingly to differentiate this run from other runs.
 
-Most parameters can be modified while other shouldn't to avoid breaking the pipeline.
+Most parameters can be modified while some shouldn't to avoid breaking the pipeline.
 This is specified by the use of the following dividing line:
 
 ```text

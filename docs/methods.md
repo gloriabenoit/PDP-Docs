@@ -1,9 +1,10 @@
 # Implemented methods
 
 The following page lists all methods and their necessary packages.
+The package versions provided here are stable ones, but other may work as well.
 
 !!! info
-    The download of each package is automated in a single script, as explained in the [*Dependencies*](dependencies.md) page.
+    The download of each package can be automated in a single script, as explained in the [*Dependencies*](dependencies.md) page.
 
 ## Global genetic correlation
 
@@ -132,5 +133,5 @@ GUIDE is available as a Python package. We are using Python `3.13.2` and the fol
 |--------------|---------|
 | numpy        | 1.18.5  |
 | polars       | 1.38.1  |
-| scipy        | 1.5.0   |
 | scikit-learn | 0.23.1  |
+| scipy        | 1.5.0   |

@@ -11,16 +11,20 @@ sh ./src/clone_repos.sh
 
 ## Packages
 
-The methods have their own dependencies, therefore we will create a new virtual environment for each.
+The methods have their own dependencies, therefore we need a new virtual environment for each.
+Additionnaly, you need an environment for the pre- and post-processing done, using Python `3.13.2` and polars `1.39.3`.
+
+These environments should be stored in the `./env/` directory, and should be named depending on the method:
+
+* HDL and HDL-L packages should be downloaded in `./env/hdl`
+* SUPERGNOVA packages should be downloaded in `./env/supergnova`
+* FactorGo packages should be downloaded in `./env/factorgo`
+* GFA packages should be downloaded in `./env/gfa`
+* GLEANR packages should be downloaded in `./env/gleanr`
+* GUIDE packages should be downloaded in `./env/guide`
+* Pre- and post-processing packages should be downloaded in `./env/processing`
 
 !!! info
-    More information on the specific dependencies can be found in the [*Implemented methods*](methods.md) page.
+    More information on the specific packanges and their versions can be found in the [*Implemented methods*](methods.md) page.
 
-We will also create an environment for the pre- and post-processing done, using Python `3.13.2` and polars `1.39.3`.
-
-```bash
-sh ./src/dependencies/create_venv.sh
-```
-
-!!! note
-    Please note that this step takes quite some time, thankfully you only need to do it once.
+You can create the environments yourself or use `./src/dependencies/create_venv.sh`, which contains the code to create them correctly.
