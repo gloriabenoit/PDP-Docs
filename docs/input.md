@@ -27,43 +27,67 @@ In addition to the harmonized summary statistics obtained with JASS, you need a 
 This file should contain one study per line, without the file extension.
 
 !!! note
-    For instance, for the outcome `BREST-CANCER` in the consortium `BCAC`, the JASS harmonized file will be `z_BCAC_BREAST-CANCER.txt`.
+    For instance, for the outcome `BREAST-CANCER` in the consortium `BCAC`, the JASS harmonized file will be `z_BCAC_BREAST-CANCER.txt`.
     Therefore, you should only write `z_BCAC_BREAST-CANCER`.
 
 ## Additional files
-
-Most methods need additional files to run.
-Therefore, we have automated the download of each of these files to make sure everything runs smoothly.
-
-```bash
-sh ./src/get_files.sh
-```
 
 ### Genome reference panel
 
 This file should be a set of PLINK files, meaning `.bim`, `.bed` and `.fam` files.
 
 !!! info
-    To specify the reference panel to use, you can update the value of `ref_panel` in `./config/pipeline_arguments.txt`.
+    To specify the reference panel to use, you can update the value of `input/ref_panel` in `pdp_config.yaml`.
 
 ### HDL and HDL-L
 
 HDL and HDL-L both use a pre-computed reference panel for the European-ancestry population.
-Although it is possible to compute your own reference panel, we choose to use theirs and not `ref_panel`.
+Although it is possible to compute your own reference panel, we choose to use theirs and not `input/ref_panel`.
+
+The reference panel for HDL is available on [Dropbox](https://www.dropbox.com/s/6js1dzy4tkc3gac/UKB_imputed_SVD_eigen99_extraction.tar.gz?dl=0), and the ones for HDL-L are available on [Zenodo](https://zenodo.org/records/14825987).
 
 !!! note
-    Please be aware that the pre-computed panels are quite heavy (33G for the global panel and ~2G for the local one).
+    Please be aware that the pre-computed panels are quite heavy (33G for HDL and 30G for HDL-L).
+
+You can use the following helper scripts to easily download the reference panels.
+
+```bash
+sh src/helper/get_hdl_ref.sh
+sh src/helper/get_hdl-l_ref.sh
+```
 
 !!! info
-    To specify the reference panels for these methods, you can update the values of `global_panel_dir`, `local_panel_dir` and `local_bim_dir` in `./config/HDL_arguments.txt`.
+    To specify the reference panels for these methods, you can update the values of `hdl/global_panel`, `hdl-l/local_panel` and `hdl-l/local_bim` in `pdp_config.yaml`.
 
 ### SUPERGNOVA
 
-When reading the reference panel, SUPERGNOVA expects to find variants positions (in centimorgans).
+#### Region partitions
+
+In order to unify the results for the local correlation methods, SUPERGNOVA will use the same partition as HDL-L.
+Since this information is stored in a `.R` file, we need to extract it before correctly formatting it to be used with SUPERGNOVA.
+
+```bash
+# Download and format the partition
+sh src/helper/get_partition.sh \
+    data/HDL-L/LD \ # Local reference panel
+    data/HDL-L/HDL-L_regions.csv \ # HDL-L partition output
+    data/SUPERGNOVA/partition/HDL-L_regions.@.tsv # SUPERGNOVA partition output
+```
+
+#### Variant positions
+
+When reading the reference panel, SUPERGNOVA expects to find variants positions (in centimorgans). If not, SUPERGNOVA will run indefinitely.
 Therefore, you need to make sure that you reference panel contains this information.
 
-If not, SUPERGNOVA will crash, which is why we will extrapolate them with a [GRCh38 positions map](https://alkesgroup.broadinstitute.org/Eagle/downloads/tables/).
+You can use the following helper scripts to download a [GRCh38 positions map](https://alkesgroup.broadinstitute.org/Eagle/downloads/tables/) and use it to extrapolate variant positions for your reference panel.
 
-!!! info
-    To indicate whether positions need to be extrapolated, you can update the value of `extrapolate_pos` in `./config/SUPERGNOVA_arguments.txt`.
-    To specify which map to use, you can update the value of `pos_map` in the same file.
+```bash
+# Download the genetic map
+sh src/helper/get_hg38_map.sh
+
+# Extrapolate positions
+sh src/helper/add_bim_positions.sh \
+    /pasteur/helix/projects/GGS_WKD/DATA_1000G/Panels/EUR/All_ensemble_1000G_hg38_EUR_all_chr \ # Input reference panel
+    data/SUPERGNOVA/genetic_map_hg38_withX.txt.gz \ # Genetic map
+    data/All_ensemble_1000G_hg38_EUR_all_chr # Output reference panel
+```

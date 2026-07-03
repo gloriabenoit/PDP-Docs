@@ -1,22 +1,21 @@
-# Running the methods
+# Running the pipeline
 
-The second step of the pipeline is to run the methods. During this step, we will run each methods independantly.
+
+You can first do a dry run of the pipeline to make sure everything works with the following command:
 
 ```bash
-sh run_pipeline.sh
+snakemake -n -s pleiotropy_decomposition_pipeline.smk
 ```
 
-## Method specific properties
+If no error arises, then you can confidently run the pipeline with the `run_pdp.sh` script.
 
-### HDL, SUPERGNOVA and HDL-L
-
-Global and local genetic correlation methods compare pairs of studies.
-Therefore, we automate them with a `sbatch` command allowing for parallel runs between each possible pairs.
-
-### FactorGo and GUIDE
-
-Unlike the other latent factor analysis methods, FactorGo and GUIDE do not automatically choose the number of factor to impute.
-This number needs to be manually selected before running the pipeline.
+```bash
+sh run_pdp.sh
+```
 
 !!! info
-    To specify the number of factors to search for, you can update the value of `k` in `./config/FactorGo_arguments.txt` and `./config/GUIDE_arguments.txt`, for FactorGo and GUIDE respectively.
+    Running each of the methods necessitates a number of intermediate files. We have marked those files as temporary, meaning they will be destroyed once the run is complete. However, you can keep them by adding the `--notemp` flag to the previous command.
+
+    ```bash
+    sh run_pdp.sh --notemp
+    ```

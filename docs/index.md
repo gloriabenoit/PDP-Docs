@@ -34,12 +34,14 @@ cd pleiotropy_decomposition
 
 ## Usage
 
-The pipeline is written to be ran on a HPC cluster which uses environment modules (`module load` command).
-Through the use of multiple Bash scripts, we will run both Python and R methods.
-Additionaly, we will use `plink/1.90p`, which will also be loaded with environment modules.
+The pipeline is written using Snakemake `8.25.5` (which needs `Python/3.11.5`) and is meant to be run on a HPC cluster which uses environment modules (`module load` command).
+We will load `Python/3.13.2` and `Python/3.8.18`, `R/4.4.0` and `plink/1.90p`. The pipeline also depends on the use of multiple virtual environment.
 
 !!! info
-    More information on the versions used can be found in the [*Implemented methods*](methods.md) and [*Dependencies*](dependencies.md) pages.
+    More information on the virtual environments and the package versions can be found in the [*Implemented methods*](methods.md) and [*Dependencies*](dependencies.md) pages.
 
-!!! warning
-    As of now, the steps need to be launched manually one after the other once they're complete.
+The pipeline can easily be launched through the use of the following bash script.
+
+```bash
+sh run_pdp.sh
+```

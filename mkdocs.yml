@@ -7,14 +7,12 @@ nav:
     - About:
       - Overview: index.md
       - Implemented methods: methods.md
-      - Repertory architecture: architecture.md
     - Set up:
       - Input data: input.md
       - Dependencies: dependencies.md
-      - Parameters: parameters.md
     - Pipeline:
-      - Preprocessing the data: preprocessing.md
-      - Running the methods: running.md
+      - Parameters: parameters.md
+      - Running the pipeline: running.md
       - Assembling the results: assembling.md
 
 theme:
