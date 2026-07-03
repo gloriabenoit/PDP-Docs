@@ -1,6 +1,6 @@
 # Pleiotropy Decomposition Pipeline using GWAS summary statistics
 
-![Pipeline architecture](./img/pipeline_architecture_V2.png)
+![Pipeline architecture](./img/pipeline_architecture.png)
 
 ## Methods
 
