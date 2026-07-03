@@ -45,8 +45,6 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../methods/">Implemented methods</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../architecture/">Repertory architecture</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Set up</span></p>
               <ul class="current">
@@ -63,6 +61,12 @@
     <li class="toctree-l3"><a class="reference internal" href="#hdl-and-hdl-l">HDL and HDL-L</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#supergnova">SUPERGNOVA</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#region-partitions">Region partitions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#variant-positions">Variant positions</a>
+    </li>
+        </ul>
     </li>
         </ul>
     </li>
@@ -70,14 +74,12 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../dependencies/">Dependencies</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Pipeline</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../preprocessing/">Preprocessing the data</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../running/">Running the methods</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../running/">Running the pipeline</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../assembling/">Assembling the results</a>
                   </li>
@@ -133,45 +135,60 @@ To ease the running of our pipeline, the data first needs to go through another 
 This file should contain one study per line, without the file extension.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>For instance, for the outcome <code>BREST-CANCER</code> in the consortium <code>BCAC</code>, the JASS harmonized file will be <code>z_BCAC_BREAST-CANCER.txt</code>.
+<p>For instance, for the outcome <code>BREAST-CANCER</code> in the consortium <code>BCAC</code>, the JASS harmonized file will be <code>z_BCAC_BREAST-CANCER.txt</code>.
 Therefore, you should only write <code>z_BCAC_BREAST-CANCER</code>.</p>
 </div>
 <h2 id="additional-files">Additional files</h2>
-<p>Most methods need additional files to run.
-Therefore, we have automated the download of each of these files to make sure everything runs smoothly.</p>
-<pre><code class="language-bash">sh ./src/get_files.sh
-</code></pre>
 <h3 id="genome-reference-panel">Genome reference panel</h3>
 <p>This file should be a set of PLINK files, meaning <code>.bim</code>, <code>.bed</code> and <code>.fam</code> files.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>To specify the reference panel to use, you can update the value of <code>ref_panel</code> in <code>./config/pipeline_arguments.txt</code>.</p>
+<p>To specify the reference panel to use, you can update the value of <code>input/ref_panel</code> in <code>pdp_config.yaml</code>.</p>
 </div>
 <h3 id="hdl-and-hdl-l">HDL and HDL-L</h3>
 <p>HDL and HDL-L both use a pre-computed reference panel for the European-ancestry population.
-Although it is possible to compute your own reference panel, we choose to use theirs and not <code>ref_panel</code>.</p>
+Although it is possible to compute your own reference panel, we choose to use theirs and not <code>input/ref_panel</code>.</p>
+<p>The reference panel for HDL is available on <a href="https://www.dropbox.com/s/6js1dzy4tkc3gac/UKB_imputed_SVD_eigen99_extraction.tar.gz?dl=0">Dropbox</a>, and the ones for HDL-L are available on <a href="https://zenodo.org/records/14825987">Zenodo</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Please be aware that the pre-computed panels are quite heavy (33G for the global panel and ~2G for the local one).</p>
+<p>Please be aware that the pre-computed panels are quite heavy (33G for HDL and 30G for HDL-L).</p>
 </div>
+<p>You can use the following helper scripts to easily download the reference panels.</p>
+<pre><code class="language-bash">sh src/helper/get_hdl_ref.sh
+sh src/helper/get_hdl-l_ref.sh
+</code></pre>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>To specify the reference panels for these methods, you can update the values of <code>global_panel_dir</code>, <code>local_panel_dir</code> and <code>local_bim_dir</code> in <code>./config/HDL_arguments.txt</code>.</p>
+<p>To specify the reference panels for these methods, you can update the values of <code>hdl/global_panel</code>, <code>hdl-l/local_panel</code> and <code>hdl-l/local_bim</code> in <code>pdp_config.yaml</code>.</p>
 </div>
 <h3 id="supergnova">SUPERGNOVA</h3>
-<p>When reading the reference panel, SUPERGNOVA expects to find variants positions (in centimorgans).
+<h4 id="region-partitions">Region partitions</h4>
+<p>In order to unify the results for the local correlation methods, SUPERGNOVA will use the same partition as HDL-L.
+Since this information is stored in a <code>.R</code> file, we need to extract it before correctly formatting it to be used with SUPERGNOVA.</p>
+<pre><code class="language-bash"># Download and format the partition
+sh src/helper/get_partition.sh \
+    data/HDL-L/LD \ # Local reference panel
+    data/HDL-L/HDL-L_regions.csv \ # HDL-L partition output
+    data/SUPERGNOVA/partition/HDL-L_regions.@.tsv # SUPERGNOVA partition output
+</code></pre>
+<h4 id="variant-positions">Variant positions</h4>
+<p>When reading the reference panel, SUPERGNOVA expects to find variants positions (in centimorgans). If not, SUPERGNOVA will run indefinitely.
 Therefore, you need to make sure that you reference panel contains this information.</p>
-<p>If not, SUPERGNOVA will crash, which is why we will extrapolate them with a <a href="https://alkesgroup.broadinstitute.org/Eagle/downloads/tables/">GRCh38 positions map</a>.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>To indicate whether positions need to be extrapolated, you can update the value of <code>extrapolate_pos</code> in <code>./config/SUPERGNOVA_arguments.txt</code>.
-To specify which map to use, you can update the value of <code>pos_map</code> in the same file.</p>
-</div>
+<p>You can use the following helper scripts to download a <a href="https://alkesgroup.broadinstitute.org/Eagle/downloads/tables/">GRCh38 positions map</a> and use it to extrapolate variant positions for your reference panel.</p>
+<pre><code class="language-bash"># Download the genetic map
+sh src/helper/get_hg38_map.sh
+
+# Extrapolate positions
+sh src/helper/add_bim_positions.sh \
+    /pasteur/helix/projects/GGS_WKD/DATA_1000G/Panels/EUR/All_ensemble_1000G_hg38_EUR_all_chr \ # Input reference panel
+    data/SUPERGNOVA/genetic_map_hg38_withX.txt.gz \ # Genetic map
+    data/All_ensemble_1000G_hg38_EUR_all_chr # Output reference panel
+</code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../architecture/" class="btn btn-neutral float-left" title="Repertory architecture"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../methods/" class="btn btn-neutral float-left" title="Implemented methods"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../dependencies/" class="btn btn-neutral float-right" title="Dependencies">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -199,7 +216,7 @@ To specify which map to use, you can update the value of <code>pos_map</code> in
         </span>
     
     
-      <span><a href="../architecture/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../methods/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../dependencies/" style="color: #fcfcfc">Next &raquo;</a></span>

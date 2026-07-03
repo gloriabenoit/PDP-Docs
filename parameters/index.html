@@ -45,29 +45,29 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../methods/">Implemented methods</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../architecture/">Repertory architecture</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Set up</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../input/">Input data</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../dependencies/">Dependencies</a>
                   </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Pipeline</span></p>
+              <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Parameters</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#number-of-factors">Number of factors</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#masking-the-mhc-region">Masking the MHC region</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#includingexcluding-specific-methods">Including/Excluding specific methods</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#using-a-pre-defined-set-of-variants">Using a pre-defined set of variants</a>
     </li>
     </ul>
                   </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Pipeline</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../preprocessing/">Preprocessing the data</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../running/">Running the methods</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../running/">Running the pipeline</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../assembling/">Assembling the results</a>
                   </li>
@@ -86,7 +86,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Set up</li>
+          <li class="breadcrumb-item">Pipeline</li>
       <li class="breadcrumb-item active">Parameters</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/gloriabenoit/PDP-Docs/edit/master/docs/parameters.md" class="icon icon-github"> Edit on GitHub</a>
@@ -98,43 +98,58 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="parameters">Parameters</h1>
-<p>The pipeline parameters are stored in the <code>./config/</code> directory.
-This directory contains 9 files:</p>
+<p>The pipeline parameters are stored in the <code>pdp_config.yaml</code> file.
+This file is divided in twelve sections:</p>
 <ul>
-<li><code>pipeline_arguments.txt</code>, main parameters of the pipeline</li>
-<li><code>assembly_arguments.txt</code>, parameters of the final assembly</li>
-<li><code>{method}_arguments.txt</code>, parameters of each method (except LDSC)</li>
+<li><code>input</code> stores the paths needed by the pipeline</li>
+<li><code>parameters</code> stores parameters for the pipeline</li>
+<li><code>ldsc</code>, <code>hdl</code> store parameters for global correlation methods</li>
+<li><code>supergnova</code>, <code>hdl-l</code> store parameters for local correlation methods</li>
+<li><code>factorgo</code>, <code>gfa</code>, <code>gleanr</code>, <code>guide</code> store parameters for latent factor analysis methods</li>
+<li><code>assembly</code> stores parameters for the final loadings assembly</li>
+<li><code>output</code> stores the directories in which to save the data/results.</li>
 </ul>
+<p>The default parameters are those suggested in the corresponding articles.</p>
+<h2 id="number-of-factors">Number of factors</h2>
+<p>Unlike the other latent factor analysis methods, FactorGo and GUIDE do not automatically choose the number of factor to impute.
+This number needs to be manually selected before running the pipeline.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>The names of the files created during the pipeline depend on the parameters you have chosen.
-If it is different from the default, than it will change accordingly to differentiate this run from other runs.</p>
+<p>To specify to number of factors, you can update the value of <code>factorgo/k_factors</code> and <code>guide/k_factors</code>.</p>
 </div>
-<p>Most parameters can be modified while some shouldn't to avoid breaking the pipeline.
-This is specified by the use of the following dividing line:</p>
-<pre><code class="language-text">#=====================================DO NOT MODIFY AFTER THAT=====================================
-</code></pre>
 <h2 id="masking-the-mhc-region">Masking the MHC region</h2>
 <p>Methods like FactorGo or GLEANR suggest using variants outside of the MHC region.
 This region is located on chromosome 6, and we have provided the following range for <em>GRCh38</em>: 28510120-33480577.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>To modify the range of the MHC region, please update the values of <code>mhc_start</code> and <code>mhc_end</code>.</p>
+<p>To modify the range of the MHC region, please update the values of <code>parameters/mhc_start</code> and <code>parameters/mhc_end</code>.</p>
+</div>
+<h2 id="includingexcluding-specific-methods">Including/Excluding specific methods</h2>
+<p>By default, we assume you will run every method that is available.
+However, it is possible to specify which methods to run, as well as the methods for which you wish to assemble the results.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>To specify which method to run, you can update the value of <code>include</code> for each method.
+To specify which method to assemble, you can update the <code>assembly</code> parameters.</p>
 </div>
 <h2 id="using-a-pre-defined-set-of-variants">Using a pre-defined set of variants</h2>
 <p>By default, we will apply the preprocessing filters suggested by each method in their respective article.
 However, it is also possible to provide a list of SNPs to analyze, so that every methods has the same input.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Although we have made it possible to use a custom list of variants, we strongly advise you to use the original filters to run each method as intended.</p>
+</div>
 <p>This list will replace the preprocessing steps for latent factors analysis methods (FactorGo, GFA, GLEANR, GUIDE), but not the global and local correlation methods (LDSC, HDL, SUPERGNOVA, HDL-L).</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>To indicate whether you want to apply the original filters or use a list of SNPs, you can update the value of <code>use_filters</code> in <code>./config/pipeline_arguments.txt</code>. To specify which list to use, you can update the value of <code>input_variants</code> in the same file.</p>
+<p>To indicate whether you want to apply the original filters or use a list of SNPs, you can update the value of <code>use_filters</code>. To specify which list to use, you can update the value of <code>input_variants</code> in the same file.</p>
 </div>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../dependencies/" class="btn btn-neutral float-left" title="Dependencies"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../preprocessing/" class="btn btn-neutral float-right" title="Preprocessing the data">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../running/" class="btn btn-neutral float-right" title="Running the pipeline">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -164,7 +179,7 @@ However, it is also possible to provide a list of SNPs to analyze, so that every
       <span><a href="../dependencies/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../preprocessing/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../running/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

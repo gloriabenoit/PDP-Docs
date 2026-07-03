@@ -53,8 +53,6 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="methods/">Implemented methods</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="architecture/">Repertory architecture</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Set up</span></p>
               <ul>
@@ -62,14 +60,12 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="dependencies/">Dependencies</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="parameters/">Parameters</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Pipeline</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="preprocessing/">Preprocessing the data</a>
+                  <li class="toctree-l1"><a class="reference internal" href="parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="running/">Running the methods</a>
+                  <li class="toctree-l1"><a class="reference internal" href="running/">Running the pipeline</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="assembling/">Assembling the results</a>
                   </li>
@@ -135,17 +131,15 @@ git clone git@github.com:gloriabenoit/pleiotropy_decomposition.git
 cd pleiotropy_decomposition
 </code></pre>
 <h2 id="usage">Usage</h2>
-<p>The pipeline is written to be ran on a HPC cluster which uses environment modules (<code>module load</code> command).
-Through the use of multiple Bash scripts, we will run both Python and R methods.
-Additionaly, we will use <code>plink/1.90p</code>, which will also be loaded with environment modules.</p>
+<p>The pipeline is written using Snakemake <code>8.25.5</code> (which needs <code>Python/3.11.5</code>) and is meant to be run on a HPC cluster which uses environment modules (<code>module load</code> command).
+We will load <code>Python/3.13.2</code> and <code>Python/3.8.18</code>, <code>R/4.4.0</code> and <code>plink/1.90p</code>. The pipeline also depends on the use of multiple virtual environment.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>More information on the versions used can be found in the <a href="methods/"><em>Implemented methods</em></a> and <a href="dependencies/"><em>Dependencies</em></a> pages.</p>
+<p>More information on the virtual environments and the package versions can be found in the <a href="methods/"><em>Implemented methods</em></a> and <a href="dependencies/"><em>Dependencies</em></a> pages.</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>As of now, the steps need to be launched manually one after the other once they're complete.</p>
-</div>
+<p>The pipeline can easily be launched through the use of the following bash script.</p>
+<pre><code class="language-bash">sh run_pdp.sh
+</code></pre>
               
             </div>
           </div><footer>

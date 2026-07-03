@@ -45,8 +45,6 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../methods/">Implemented methods</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../architecture/">Repertory architecture</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Set up</span></p>
               <ul class="current">
@@ -60,14 +58,12 @@
     </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Pipeline</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../preprocessing/">Preprocessing the data</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../running/">Running the methods</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../running/">Running the pipeline</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../assembling/">Assembling the results</a>
                   </li>
@@ -101,26 +97,28 @@
 <h2 id="github-repositories">Github repositories</h2>
 <p>Some methods need additionnal files to run, which are available on the original Github repositories.
 We will clone each of them  since some are necessary but also as a way to give credit.</p>
-<pre><code class="language-bash">sh ./src/clone_repos.sh
+<pre><code class="language-bash">sh src/helper/clone_repos.sh
 </code></pre>
 <h2 id="packages">Packages</h2>
 <p>The methods have their own dependencies, therefore we need a new virtual environment for each.
 Additionnaly, you need an environment for the pre- and post-processing done, using Python <code>3.13.2</code> and polars <code>1.39.3</code>.</p>
-<p>These environments should be stored in the <code>./env/</code> directory, and should be named depending on the method:</p>
+<p>These environments should be stored in the <code>env/</code> directory, and should be named depending on the method:</p>
 <ul>
-<li>HDL and HDL-L packages should be downloaded in <code>./env/hdl</code></li>
-<li>SUPERGNOVA packages should be downloaded in <code>./env/supergnova</code></li>
-<li>FactorGo packages should be downloaded in <code>./env/factorgo</code></li>
-<li>GFA packages should be downloaded in <code>./env/gfa</code></li>
-<li>GLEANR packages should be downloaded in <code>./env/gleanr</code></li>
-<li>GUIDE packages should be downloaded in <code>./env/guide</code></li>
-<li>Pre- and post-processing packages should be downloaded in <code>./env/processing</code></li>
+<li>HDL and HDL-L packages should be downloaded in <code>env/hdl</code></li>
+<li>SUPERGNOVA packages should be downloaded in <code>env/supergnova</code></li>
+<li>FactorGo packages should be downloaded in <code>env/factorgo</code></li>
+<li>GFA packages should be downloaded in <code>env/gfa</code></li>
+<li>GLEANR packages should be downloaded in <code>env/gleanr</code></li>
+<li>GUIDE packages should be downloaded in <code>env/guide</code></li>
+<li>Pre- and post-processing packages should be downloaded in <code>env/processing</code></li>
 </ul>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>More information on the specific packanges and their versions can be found in the <a href="../methods/"><em>Implemented methods</em></a> page.</p>
 </div>
-<p>You can create the environments yourself or use <code>./src/dependencies/create_venv.sh</code>, which contains the code to create them correctly.</p>
+<p>You can use the following script to easily create all needed virtual environments.</p>
+<pre><code class="language-bash">sh src/helper/create_venv.sh
+</code></pre>
               
             </div>
           </div><footer>

@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Gloria BENOIT" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Running the methods - Pleiotropy Decomposition Pipeline</title>
+    <title>Running the pipeline - Pleiotropy Decomposition Pipeline</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Running the methods";
+        var mkdocs_page_name = "Running the pipeline";
         var mkdocs_page_input_path = "running.md";
         var mkdocs_page_url = null;
       </script>
@@ -45,8 +45,6 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../methods/">Implemented methods</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../architecture/">Repertory architecture</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Set up</span></p>
               <ul>
@@ -54,23 +52,13 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../dependencies/">Dependencies</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Pipeline</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../preprocessing/">Preprocessing the data</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Running the methods</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Running the pipeline</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#method-specific-properties">Method specific properties</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#hdl-supergnova-and-hdl-l">HDL, SUPERGNOVA and HDL-L</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#factorgo-and-guide">FactorGo and GUIDE</a>
-    </li>
-        </ul>
-    </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../assembling/">Assembling the results</a>
@@ -91,7 +79,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Pipeline</li>
-      <li class="breadcrumb-item active">Running the methods</li>
+      <li class="breadcrumb-item active">Running the pipeline</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/gloriabenoit/PDP-Docs/edit/master/docs/running.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
@@ -101,26 +89,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="running-the-methods">Running the methods</h1>
-<p>The second step of the pipeline is to run the methods. During this step, we will run each methods independantly.</p>
-<pre><code class="language-bash">sh run_pipeline.sh
+                <h1 id="running-the-pipeline">Running the pipeline</h1>
+<p>You can first do a dry run of the pipeline to make sure everything works with the following command:</p>
+<pre><code class="language-bash">snakemake -n -s pleiotropy_decomposition_pipeline.smk
 </code></pre>
-<h2 id="method-specific-properties">Method specific properties</h2>
-<h3 id="hdl-supergnova-and-hdl-l">HDL, SUPERGNOVA and HDL-L</h3>
-<p>Global and local genetic correlation methods compare pairs of studies.
-Therefore, we automate them with a <code>sbatch</code> command allowing for parallel runs between each possible pairs.</p>
-<h3 id="factorgo-and-guide">FactorGo and GUIDE</h3>
-<p>Unlike the other latent factor analysis methods, FactorGo and GUIDE do not automatically choose the number of factor to impute.
-This number needs to be manually selected before running the pipeline.</p>
+<p>If no error arises, then you can confidently run the pipeline with the <code>run_pdp.sh</code> script.</p>
+<pre><code class="language-bash">sh run_pdp.sh
+</code></pre>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>To specify the number of factors to search for, you can update the value of <code>k</code> in <code>./config/FactorGo_arguments.txt</code> and <code>./config/GUIDE_arguments.txt</code>, for FactorGo and GUIDE respectively.</p>
+<p>Running each of the methods necessitates a number of intermediate files. We have marked those files as temporary, meaning they will be destroyed once the run is complete. However, you can keep them by adding the <code>--notemp</code> flag to the previous command.</p>
+<p><code>bash
+sh run_pdp.sh --notemp</code></p>
 </div>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../preprocessing/" class="btn btn-neutral float-left" title="Preprocessing the data"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../parameters/" class="btn btn-neutral float-left" title="Parameters"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../assembling/" class="btn btn-neutral float-right" title="Assembling the results">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -148,7 +134,7 @@ This number needs to be manually selected before running the pipeline.</p>
         </span>
     
     
-      <span><a href="../preprocessing/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../parameters/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../assembling/" style="color: #fcfcfc">Next &raquo;</a></span>
