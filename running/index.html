@@ -91,16 +91,13 @@
               
                 <h1 id="running-the-pipeline">Running the pipeline</h1>
 <p>You can first do a dry run of the pipeline to make sure everything works with the following command:</p>
-<pre><code class="language-bash">snakemake -n -s pleiotropy_decomposition_pipeline.smk
-</code></pre>
+<pre class="highlight"><code class="language-bash">snakemake -n -s pleiotropy_decomposition_pipeline.smk</code></pre>
 <p>If no error arises, then you can confidently run the pipeline with the <code>run_pdp.sh</code> script.</p>
-<pre><code class="language-bash">sh run_pdp.sh
-</code></pre>
+<pre class="highlight"><code class="language-bash">sh run_pdp.sh</code></pre>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>Running each of the methods necessitates a number of intermediate files. We have marked those files as temporary, meaning they will be destroyed once the run is complete. However, you can keep them by adding the <code>--notemp</code> flag to the previous command.</p>
-<p><code>bash
-sh run_pdp.sh --notemp</code></p>
+<pre class="highlight"><code class="language-bash">sh run_pdp.sh --notemp</code></pre>
 </div>
               
             </div>

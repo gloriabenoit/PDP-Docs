@@ -154,9 +154,8 @@ Although it is possible to compute your own reference panel, we choose to use th
 <p>Please be aware that the pre-computed panels are quite heavy (33G for HDL and 30G for HDL-L).</p>
 </div>
 <p>You can use the following helper scripts to easily download the reference panels.</p>
-<pre><code class="language-bash">sh src/helper/get_hdl_ref.sh
-sh src/helper/get_hdl-l_ref.sh
-</code></pre>
+<pre class="highlight"><code class="language-bash">sh src/helper/get_hdl_ref.sh
+sh src/helper/get_hdl-l_ref.sh</code></pre>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>To specify the reference panels for these methods, you can update the values of <code>hdl/global_panel</code>, <code>hdl-l/local_panel</code> and <code>hdl-l/local_bim</code> in <code>pdp_config.yaml</code>.</p>
@@ -165,25 +164,23 @@ sh src/helper/get_hdl-l_ref.sh
 <h4 id="region-partitions">Region partitions</h4>
 <p>In order to unify the results for the local correlation methods, SUPERGNOVA will use the same partition as HDL-L.
 Since this information is stored in a <code>.R</code> file, we need to extract it before correctly formatting it to be used with SUPERGNOVA.</p>
-<pre><code class="language-bash"># Download and format the partition
+<pre class="highlight"><code class="language-bash"># Download and format the partition
 sh src/helper/get_partition.sh \
     data/HDL-L/LD \ # Local reference panel
     data/HDL-L/HDL-L_regions.csv \ # HDL-L partition output
-    data/SUPERGNOVA/partition/HDL-L_regions.@.tsv # SUPERGNOVA partition output
-</code></pre>
+    data/SUPERGNOVA/partition/HDL-L_regions.@.tsv # SUPERGNOVA partition output</code></pre>
 <h4 id="variant-positions">Variant positions</h4>
 <p>When reading the reference panel, SUPERGNOVA expects to find variants positions (in centimorgans). If not, SUPERGNOVA will run indefinitely.
 Therefore, you need to make sure that you reference panel contains this information.</p>
 <p>You can use the following helper scripts to download a <a href="https://alkesgroup.broadinstitute.org/Eagle/downloads/tables/">GRCh38 positions map</a> and use it to extrapolate variant positions for your reference panel.</p>
-<pre><code class="language-bash"># Download the genetic map
+<pre class="highlight"><code class="language-bash"># Download the genetic map
 sh src/helper/get_hg38_map.sh
 
 # Extrapolate positions
 sh src/helper/add_bim_positions.sh \
     /pasteur/helix/projects/GGS_WKD/DATA_1000G/Panels/EUR/All_ensemble_1000G_hg38_EUR_all_chr \ # Input reference panel
     data/SUPERGNOVA/genetic_map_hg38_withX.txt.gz \ # Genetic map
-    data/All_ensemble_1000G_hg38_EUR_all_chr # Output reference panel
-</code></pre>
+    data/All_ensemble_1000G_hg38_EUR_all_chr # Output reference panel</code></pre>
               
             </div>
           </div><footer>
