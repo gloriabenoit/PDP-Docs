@@ -131,7 +131,7 @@ To ease the running of our pipeline, the data first needs to go through another 
 <li>Normalize the effect size to Z-scores</li>
 </ul>
 <h2 id="set-of-studies">Set of studies</h2>
-<p>In addition to the harmonized summary statistics obtained with JASS, you need a <code>.txt</code> file specifying for which studies you would like to run the pipeline.
+<p>In addition to the harmonized summary statistics obtained with JASS, you need a <code>.txt</code> file specifying the studies for which you would like to run the pipeline.
 This file should contain one study per line, without the file extension.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -224,6 +224,8 @@ sh src/helper/add_bim_positions.sh \
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="../search/main.js"></script>
     <script>
         jQuery(function () {

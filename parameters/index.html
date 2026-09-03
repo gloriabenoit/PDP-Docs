@@ -63,7 +63,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#includingexcluding-specific-methods">Including/Excluding specific methods</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#using-a-pre-defined-set-of-variants">Using a pre-defined set of variants</a>
+    <li class="toctree-l2"><a class="reference internal" href="#computing-results-for-a-specific-set-of-variants">Computing results for a specific set of variants</a>
     </li>
     </ul>
                   </li>
@@ -132,17 +132,17 @@ However, it is possible to specify which methods to run, as well as the methods 
 <p>To specify which method to run, you can update the value of <code>include</code> for each method.
 To specify which method to assemble, you can update the <code>assembly</code> parameters.</p>
 </div>
-<h2 id="using-a-pre-defined-set-of-variants">Using a pre-defined set of variants</h2>
-<p>By default, we will apply the preprocessing filters suggested by each method in their respective article.
-However, it is also possible to provide a list of SNPs to analyze, so that every methods has the same input.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Although we have made it possible to use a custom list of variants, we strongly advise you to use the original filters to run each method as intended.</p>
-</div>
-<p>This list will replace the preprocessing steps for latent factors analysis methods (FactorGo, GFA, GLEANR, GUIDE), but not the global and local correlation methods (LDSC, HDL, SUPERGNOVA, HDL-L).</p>
+<h2 id="computing-results-for-a-specific-set-of-variants">Computing results for a specific set of variants</h2>
+<p>Latent factor analysis methods will be run using the preprocessing filters suggested by each method in their respective article.
+However, it is possible to estimate variant-factor associations for a new set of variants, different from the one used as input.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>To indicate whether you want to apply the original filters or use a list of SNPs, you can update the value of <code>use_filters</code>. To specify which list to use, you can update the value of <code>input_variants</code> in the same file.</p>
+<p>More information on the estimation of variant-factor associations can be found in the <em><a href="../assembling/">Assembling the results</a></em> page.</p>
+</div>
+<p>Although the methods results will be computed for the input set, the assembled results will be computed for this new set, which will be common to all latent factor analysis methods.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>To specify the list of variants to estimate the results for, you can update the value of <code>output_variants</code>.</p>
 </div>
               
             </div>
@@ -187,6 +187,8 @@ However, it is also possible to provide a list of SNPs to analyze, so that every
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="../search/main.js"></script>
     <script>
         jQuery(function () {

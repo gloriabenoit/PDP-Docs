@@ -96,9 +96,26 @@ During this step, we will compile the results of each method into one single tab
 <p class="admonition-title">Note</p>
 <p>LDSC and HDL are not included in this final table seeing as the value would be the same accross all variants.</p>
 </div>
-<p>Since FactorGo, GFA and GLEANR have specific variant filtering in their preprocessing step, we fully join the results.
-However, since GUIDE has none and we still want to avoid having a sparse assembled matrix, we will only keep GUIDE results for the variants used as input in the other methods.</p>
-<p>For HDL-L and SUPERGNOVA, we will expand the local correlation from region to variant level in order to get a value for each variant previously selected.</p>
+<p>As previously mentioned, input sets of variants vary across latent factor analysis method.
+However, it is possible to estimate variant-factor associations for a new set of variants using generalized least squares (GLS).</p>
+<p>Considering <span class="arithmatex">\(n\)</span> the number of variants, <span class="arithmatex">\(m\)</span> the number of traits and <span class="arithmatex">\(k\)</span> the number of factors, each latent factor analysis method will produce two main files:</p>
+<ul>
+<li><strong>Trait loadings (<span class="arithmatex">\(\hat{T}\)</span>)</strong>: Trait-factor association, a matrix of size <span class="arithmatex">\(m \times k\)</span></li>
+<li><strong>Variant loadings (<span class="arithmatex">\(\hat{V}\)</span>)</strong>: Variant-factor association, a matrix of size <span class="arithmatex">\(n \times k\)</span></li>
+</ul>
+<p>Thus, the formula to compute GLS estimates is as follows:</p>
+<div class="arithmatex">\[
+ \hat{V}_i = (\hat{T}^\top \Sigma^{-1} \hat{T})^{-1} (\hat{T}^\top \Sigma^{-1} \hat{\beta}_i)
+\]</div>
+<p>where <span class="arithmatex">\(\hat{V}_i\)</span> is a vector of size <span class="arithmatex">\(1 \times k\)</span> of estimated variant loadings for variant <span class="arithmatex">\(i\)</span>, <span class="arithmatex">\(\Sigma\)</span> is a matrix of size <span class="arithmatex">\(m \times m\)</span> of LDSC intercepts and <span class="arithmatex">\(\hat{\beta}_i\)</span> is a vector of size <span class="arithmatex">\(1 \times m\)</span> of observed effects of variant <span class="arithmatex">\(i\)</span> on <span class="arithmatex">\(m\)</span> traits (GWAS summary statistics).</p>
+<p>We will use this in order to assemble results over the same set of variants for all methods.
+This common set of variants is defined as all variants included in FactorGo, GFA or GLEANR preprocessing.
+Since GUIDE does not filter variants, we will already have variant loadings for this set.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>It is also possible to specify a different set of variants to use in the assembly.
+More information on this can be found in the <em><a href="../parameters/">Parameters</a></em> page.</p>
+</div>
               
             </div>
           </div><footer>
@@ -139,6 +156,8 @@ However, since GUIDE has none and we still want to avoid having a sparse assembl
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="../search/main.js"></script>
     <script>
         jQuery(function () {
