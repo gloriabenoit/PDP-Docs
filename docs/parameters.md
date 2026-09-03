@@ -38,15 +38,15 @@ However, it is possible to specify which methods to run, as well as the methods 
     To specify which method to run, you can update the value of `include` for each method.
     To specify which method to assemble, you can update the `assembly` parameters.
 
-## Using a pre-defined set of variants
+## Computing results for a specific set of variants
 
-By default, we will apply the preprocessing filters suggested by each method in their respective article.
-However, it is also possible to provide a list of SNPs to analyze, so that every methods has the same input.
-
-!!! warning
-    Although we have made it possible to use a custom list of variants, we strongly advise you to use the original filters to run each method as intended.
-
-This list will replace the preprocessing steps for latent factors analysis methods (FactorGo, GFA, GLEANR, GUIDE), but not the global and local correlation methods (LDSC, HDL, SUPERGNOVA, HDL-L).
+Latent factor analysis methods will be run using the preprocessing filters suggested by each method in their respective article.
+However, it is possible to estimate variant-factor associations for a new set of variants, different from the one used as input.
 
 !!! info
-    To indicate whether you want to apply the original filters or use a list of SNPs, you can update the value of `use_filters`. To specify which list to use, you can update the value of `input_variants` in the same file.
+    More information on the estimation of variant-factor associations can be found in the *[Assembling the results](assembling.md)* page.
+
+Although the methods results will be computed for the input set, the assembled results will be computed for this new set, which will be common to all latent factor analysis methods.
+
+!!! info
+    To specify the list of variants to estimate the results for, you can update the value of `output_variants`.

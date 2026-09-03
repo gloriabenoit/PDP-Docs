@@ -25,7 +25,7 @@ These environments should be stored in the `env/` directory, and should be named
 * Pre- and post-processing packages should be downloaded in `env/processing`
 
 !!! info
-    More information on the specific packanges and their versions can be found in the [*Implemented methods*](methods.md) page.
+    More information on the specific packages and their versions can be found in the [*Implemented methods*](methods.md) page.
 
 You can use the following script to easily create all needed virtual environments.
 

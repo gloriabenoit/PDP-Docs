@@ -23,7 +23,7 @@ Putting the input data through the JASS analysis pipeline allows for the followi
 
 ## Set of studies
 
-In addition to the harmonized summary statistics obtained with JASS, you need a `.txt` file specifying for which studies you would like to run the pipeline.
+In addition to the harmonized summary statistics obtained with JASS, you need a `.txt` file specifying the studies for which you would like to run the pipeline.
 This file should contain one study per line, without the file extension.
 
 !!! note
