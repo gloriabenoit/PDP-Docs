@@ -10,12 +10,15 @@ As previously mentioned, input sets of variants vary across latent factor analys
 However, it is possible to estimate variant-factor associations for a new set of variants using generalized least squares (GLS).
 
 Considering $n$ the number of variants, $m$ the number of traits and $k$ the number of factors, each latent factor analysis method will produce two main files:
+
 * **Trait loadings ($\hat{T}$)**: Trait-factor association, a matrix of size $m \times k$
 * **Variant loadings ($\hat{V}$)**: Variant-factor association, a matrix of size $n \times k$
 
 Thus, the formula to compute GLS estimates is as follows:
 
-$ \hat{V}_i = (\hat{T}^\top \Sigma^{-1} \hat{T})^{-1} (\hat{T}^\top \Sigma^{-1} \hat{\beta}_i) $
+$$
+ \hat{V}_i = (\hat{T}^\top \Sigma^{-1} \hat{T})^{-1} (\hat{T}^\top \Sigma^{-1} \hat{\beta}_i)
+$$
 
 where $\hat{V}_i$ is a vector of size $1 \times k$ of estimated variant loadings for variant $i$, $\Sigma$ is a matrix of size $m \times m$ of LDSC intercepts and $\hat{\beta}_i$ is a vector of size $1 \times m$ of observed effects of variant $i$ on $m$ traits (GWAS summary statistics).
 
